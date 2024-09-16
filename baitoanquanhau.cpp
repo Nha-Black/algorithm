@@ -60,13 +60,11 @@ void printBoard(const vector<vector<int>>& board) {
 
 int main() {
     int N;
-    cout << "Nhập kích thước bàn cờ N (N x N): ";
     cin >> N;
 
     vector<vector<int>> board(N, vector<int>(N, 0));
 
     if (solveNQueens(board, 0, N)) {
-        cout << "Một cách đặt quân hậu là:" << endl;
         printBoard(board);
     } else {
         cout << "Không có cách đặt quân hậu hợp lệ." << endl;
