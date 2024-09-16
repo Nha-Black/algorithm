@@ -1,43 +1,46 @@
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
-int N; 
 
-bool isSafe(vector<vector<int>>& board, int row, int col) {
-    
-    for (int i = 0; i < row; i++)
-        if (board[i][col])
+bool isSafe(const vector<vector<int>>& board, int row, int col, int N) {
+    // Kiểm tra cột
+    for (int i = 0; i < row; i++) {
+        if (board[i][col] == 1) {
             return false;
+        }
+    }
 
-    // Kiểm tra đường chéo trên bên trái
-    for (int i = row, j = col; i >= 0 && j >= 0; i--, j--)
-        if (board[i][j])
+    // Kiểm tra đường chéo trên
+    for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+        if (board[i][j] == 1) {
             return false;
+        }
+    }
 
-    // Kiểm tra đường chéo trên bên phải
-    for (int i = row, j = col; i >= 0 && j < N; i--, j++)
-        if (board[i][j])
+    // Kiểm tra đường chéo dưới
+    for (int i = row, j = col; i >= 0 && j < N; i--, j++) {
+        if (board[i][j] == 1) {
             return false;
+        }
+    }
 
     return true;
 }
 
-bool solveNQueensUtil(vector<vector<int>>& board, int row) {
-    // Nếu đã đặt đủ N quân hậu thì return true
-    if (row >= N)
+bool solveNQueens(vector<vector<int>>& board, int row, int N) {
+    if (row >= N) {
         return true;
+    }
 
-    // Duyệt qua các cột để thử đặt quân hậu
     for (int col = 0; col < N; col++) {
-        // Nếu có thể đặt quân hậu tại (row, col)
-        if (isSafe(board, row, col)) {
-            // Đặt quân hậu tại vị trí (row, col)
+        if (isSafe(board, row, col, N)) {
             board[row][col] = 1;
 
-            // Đệ quy kiểm tra đặt quân hậu tiếp theo
-            if (solveNQueensUtil(board, row + 1))
+            if (solveNQueens(board, row + 1, N)) {
                 return true;
+            }
 
             board[row][col] = 0;
         }
@@ -46,28 +49,28 @@ bool solveNQueensUtil(vector<vector<int>>& board, int row) {
     return false;
 }
 
-// Hàm giải bài toán N quân hậu
-bool solveNQueens() {
-    // Khởi tạo bàn cờ N x N với các vị trí đều bằng 0
-    vector<vector<int>> board(N, vector<int>(N, 0));
-
-    if (!solveNQueensUtil(board, 0)) {
-        cout << "Không tìm thấy lời giải\n";
-        return false;
-    }
-
-    // In ra bàn cờ với các quân hậu đã đặt
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++)
-            cout << (board[i][j] ? "1 " : "0 ");
+void printBoard(const vector<vector<int>>& board) {
+    for (const auto& row : board) {
+        for (int cell : row) {
+            cout << (cell ? "Q " : ". ");
+        }
         cout << endl;
     }
-
-    return true;
 }
 
 int main() {
-    cin>>N;
-    solveNQueens();
+    int N;
+    cout << "Nhập kích thước bàn cờ N (N x N): ";
+    cin >> N;
+
+    vector<vector<int>> board(N, vector<int>(N, 0));
+
+    if (solveNQueens(board, 0, N)) {
+        cout << "Một cách đặt quân hậu là:" << endl;
+        printBoard(board);
+    } else {
+        cout << "Không có cách đặt quân hậu hợp lệ." << endl;
+    }
+
     return 0;
 }
