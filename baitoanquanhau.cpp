@@ -67,7 +67,7 @@ int main() {
     if (solveNQueens(board, 0, N)) {
         printBoard(board);
     } else {
-        cout << "Không có cách đặt quân hậu hợp lệ." << endl;
+        cout << "fail" << endl;
     }
 
     return 0;
