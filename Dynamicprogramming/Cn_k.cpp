@@ -20,6 +20,12 @@ main(){
             }
         }
     }
+    // for(int i=0; i<=n;i++){
+    //     for(j=0; j<=k;j++){
+    //         cout<<data[i][j]<<" ";
+    //     }
+    //     cout<<"\n";
+    // }
     cout<<data[n][k];
     //C(n,k)= C(n-1,k-1)+C(n-1,k);
     //C(n,n)=C(n,0)=1;
