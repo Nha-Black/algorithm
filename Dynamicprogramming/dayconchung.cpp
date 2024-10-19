@@ -4,8 +4,8 @@
 
 using namespace std;
 
-// Hàm tìm LCS giữa hai chuỗi X và Y
-string findLCS(const string &X, const string &Y) {
+
+string findLCS(string X, string Y) {
     int m = X.length();
     int n = Y.length();
 
@@ -26,13 +26,11 @@ string findLCS(const string &X, const string &Y) {
     int i = m, j = n;
     string lcs = "";
     while (i > 0 && j > 0) {
-        // Nếu ký tự tương ứng khớp nhau, thêm vào LCS
         if (X[i - 1] == Y[j - 1]) {
             lcs = X[i - 1] + lcs;
             i--;
             j--;
         } 
-        // Di chuyển theo hướng có giá trị lớn hơn
         else if (dp[i - 1][j] > dp[i][j - 1]) {
             i--;
         } else {
@@ -60,4 +58,6 @@ int main() {
     cout << "LCS: " << lcs << endl;
 
     return 0;
+    //ABCBDAA
+    //BDCABA
 }
