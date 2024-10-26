@@ -11,7 +11,6 @@ string findLCS(string X, string Y) {
 
     vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
 
-    // Điền giá trị cho bảng dp
     for (int i = 1; i <= m; ++i) {
         for (int j = 1; j <= n; ++j) {
             if (X[i - 1] == Y[j - 1]) {
@@ -22,7 +21,6 @@ string findLCS(string X, string Y) {
         }
     }
 
-    // Truy ngược bảng dp để tìm LCS
     int i = m, j = n;
     string lcs = "";
     while (i > 0 && j > 0) {
