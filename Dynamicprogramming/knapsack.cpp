@@ -1,8 +1,8 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
 using namespace std;
-int max(int x, int y) {
-   return (x > y) ? x : y;
-}
+
 int knapSack(int W, int w[], int v[], int n) {
    int i, wt;
    int K[n + 1][W + 1];
@@ -16,6 +16,24 @@ int knapSack(int W, int w[], int v[], int n) {
         K[i][wt] = K[i - 1][wt];
       }
    }
+   // for(int i=1;i<=n;i++){
+   //    for (int j=1;j<=W;j++) cout<<K[i][j]<<" ";
+   //    cout<<"\n";
+   // }
+   //truy vết
+   vector<int> items;
+   int L=W;
+  cout<<L<<"\n";
+   for (int i=n;i>0;i--){
+      if(K[i][L]!=K[i-1][L]){
+         cout<<w[i-1]<<" ";
+         
+         L-=w[i-1];
+         //cout<<w[i]<<" "<<L<<"\n";
+      }
+   }
+   //for (int i:items) cout<<i<<"";
+   
    return K[n][W];
 }
 int main() {
@@ -24,11 +42,10 @@ int main() {
    cin >> n>>W;
    int v[n], w[n];
    for (int i = 0; i < n; i++) {
-      cout << "Enter value and weight for item " << i << ":";
-      cin >> v[i];
+      //cout << "Enter value and weight for item " << i << ":";
       cin >> w[i];
+      cin >> v[i];
    }
-   cout << "Enter the capacity of knapsack";
    cout << knapSack(W, w, v, n);
    return 0;
 }
