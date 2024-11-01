@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void generateBinary(int n, vector<int>& binaryVec, int index) {
+void init(int n, vector<int>& binaryVec, int index) {
     if (index == n) {
         for (int bit : binaryVec) {
             cout << bit;
@@ -13,10 +13,10 @@ void generateBinary(int n, vector<int>& binaryVec, int index) {
     }
 
     binaryVec[index] = 0;
-    generateBinary(n, binaryVec, index + 1);
+    init(n, binaryVec, index + 1);
 
     binaryVec[index] = 1;
-    generateBinary(n, binaryVec, index + 1);
+    init(n, binaryVec, index + 1);
 }
 
 int main() {
@@ -25,7 +25,7 @@ int main() {
 
     vector<int> binaryVec(n);
 
-    generateBinary(n, binaryVec, 0);
+    init(n, binaryVec, 0);
 
     return 0;
 }

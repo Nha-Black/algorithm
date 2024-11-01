@@ -21,7 +21,7 @@ int knapSack(int W, int w[], int v[], int n) {
 int main() {
    cout << "Enter the number of items in a Knapsack:";
    int n, W;
-   cin >> n;
+   cin >> n>>W;
    int v[n], w[n];
    for (int i = 0; i < n; i++) {
       cout << "Enter value and weight for item " << i << ":";
@@ -29,7 +29,6 @@ int main() {
       cin >> w[i];
    }
    cout << "Enter the capacity of knapsack";
-   cin >> W;
    cout << knapSack(W, w, v, n);
    return 0;
 }
