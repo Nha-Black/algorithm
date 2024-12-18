@@ -16,23 +16,22 @@ int knapSack(int W, int w[], int v[], int n) {
         K[i][wt] = K[i - 1][wt];
       }
    }
-   // for(int i=1;i<=n;i++){
-   //    for (int j=1;j<=W;j++) cout<<K[i][j]<<" ";
+   // cout<<"\n";
+   // for(int i=0;i<=n;i++){
+   //    for (int j=0;j<=W;j++) cout<<K[i][j]<<" ";
    //    cout<<"\n";
    // }
    //truy vết
    vector<int> items;
    int L=W;
-  cout<<L<<"\n";
+  
    for (int i=n;i>0;i--){
       if(K[i][L]!=K[i-1][L]){
-         cout<<w[i-1]<<" ";
-         
+         cout<<i<<" ";
          L-=w[i-1];
-         //cout<<w[i]<<" "<<L<<"\n";
       }
    }
-   //for (int i:items) cout<<i<<"";
+
    
    return K[n][W];
 }
@@ -46,6 +45,7 @@ int main() {
       cin >> w[i];
       cin >> v[i];
    }
+   cout<<"\n";
    cout << knapSack(W, w, v, n);
    return 0;
 }

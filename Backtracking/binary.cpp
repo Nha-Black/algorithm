@@ -5,8 +5,8 @@ using namespace std;
 
 void init(int n, vector<int>& binaryVec, int index) {
     if (index == n) {
-        for (int bit : binaryVec) {
-            cout << bit;
+        for (int i=0; i<binaryVec.size(); i++) {
+            cout << binaryVec[i];
         }
         cout << endl;
         return;

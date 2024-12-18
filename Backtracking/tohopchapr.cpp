@@ -3,8 +3,8 @@
 using namespace std;
 vector<int> datas;
 void print(vector<int> vector){
-    for(int i:vector){
-        cout<<i<<" ";
+    for(int i=0; i<vector.size(); i++){
+        cout<<vector[i]<<" ";
     }
     cout<<"\n";
 }
